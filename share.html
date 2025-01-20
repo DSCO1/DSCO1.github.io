@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Recipe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #e69d9d;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            height: 60px;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ff6f61;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+            margin-left: auto;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+        }
+
+        .nav-links a:hover {
+            color: #ff6f61;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border-radius: 8px;
+            padding: 10px 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 1024px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #ff5722;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #ff5722;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .section input, .section textarea, .section select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .section textarea {
+            resize: vertical;
+        }
+
+        .section button {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .section button:hover {
+            background-color: #e64a19;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .header p {
+                font-size: 1em;
+            }
+            .section h2 {
+                font-size: 1.5em;
+            }
+            .section label {
+                font-size: 0.9em;
+            }
+            .section input, .section textarea, .section select {
+                font-size: 0.9em;
+            }
+            .section button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            .header h1 {
+                font-size: 1.5em;
+            }
+            .header p {
+                font-size: 0.9em;
+            }
+            .section h2 {
+                font-size: 1.2em;
+            }
+            .section label {
+                font-size: 0.8em;
+            }
+            .section input, .section textarea, .section select {
+                font-size: 0.8em;
+            }
+            .section button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-utensils"></i>
+                    Culinary Horizons
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="tester4.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#categories">Categories ▼</a>
+                        <div class="dropdown-content">
+                            <a href="Vegeterian.html">Vegetarian</a>
+                            <a href="desserts.html">Desserts</a>
+                            <a href="quick-meals.html">Quick Meals</a>
+                            <a href="snacks.html">Snacks</a>
+                        </div>
+                    </li>
+                    <li><a href="share.html">Share Your Recipe</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="header">
+            <h1>Share Your Recipe</h1>
+            <p>We'd love to feature your culinary creation on our website!</p>
+        </div>
+        <form id="recipeForm" action="#" method="POST" enctype="multipart/form-data">
+            <div class="section">
+                <h2>Recipe Category</h2>
+                <label for="category">Select Category:</label>
+                <select id="category" name="category" required>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="quick-meal">Quick Meal</option>
+                    <option value="snack">Snack</option>
+                </select>
+                <div class="error" id="categoryError"></div>
+            </div>
+
+            <div class="section">
+                <h2>Recipe Name</h2>
+                <label for="recipeName">Recipe Name:</label>
+                <input type="text" id="recipeName" name="recipeName" placeholder="Enter recipe name" required maxlength="100">
+                <small>Max 100 characters</small>
+                <div class="error" id="recipeNameError"></div>
+            </div>
+
+            <div class="section">
+                <h2>Ingredients</h2>
+                <label for="ingredients">Ingredients:</label>
+                <textarea id="ingredients" name="ingredients" rows="5" placeholder="List all ingredients" required maxlength="500"></textarea>
+                <small>Max 500 characters</small>
+                <div class="error" id="ingredientsError"></div>
+            </div>
+
+            <div class="section">
+                <h2>Instructions</h2>
+                <label for="instructions">Instructions:</label>
+                <textarea id="instructions" name="instructions" rows="10" placeholder="Provide step-by-step instructions" required maxlength="1000"></textarea>
+                <small>Max 1000 characters</small>
+                <div class="error" id="instructionsError"></div>
+            </div>
+
+            <div class="section">
+                <h2>Recipe Image</h2>
+                <label for="recipeImage">Upload Image:</label>
+                <input type="file" id="recipeImage" name="recipeImage" accept="image/*" required>
+                <div class="error" id="imageError"></div>
+            </div>
+
+            <div class="section">
+                <h2>Recipe Video</h2>
+                <label for="recipeVideo">Upload Video:</label>
+                <input type="file" id="recipeVideo" name="recipeVideo" accept="video/*">
+                <div class="error" id="videoError"></div>
+            </div>
+
+            <div class="section">
+                <button type="submit">Submit Recipe</button>
+            </div>
+        </form>
+        <div class="footer">
+            <p>&copy; 2023 Recipe Delight. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("recipeForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            let isValid = true;
+
+            // Reset previous errors
+            document.querySelectorAll('.error').forEach(error => error.innerHTML = "");
+
+            // Validate Recipe Name
+            const recipeName = document.getElementById("recipeName").value;
+            if (recipeName.length < 5) {
+                document.getElementById("recipeNameError").innerHTML = "Recipe name must be at least 5 characters long.";
+                isValid = false;
+            }
+
+            // Validate Ingredients
+            const ingredients = document.getElementById("ingredients").value;
+            if (ingredients.length < 10) {
+                document.getElementById("ingredientsError").innerHTML = "Ingredients must be at least 10 characters long.";
+                isValid = false;
+            }
+
+            // Validate Instructions
+            const instructions = document.getElementById("instructions").value;
+            if (instructions.length < 20) {
+                document.getElementById("instructionsError").innerHTML = "Instructions must be at least 20 characters long.";
+                isValid = false;
+            }
+
+            // Validate Recipe Image (only image files allowed)
+            const image = document.getElementById("recipeImage").files[0];
+            if (image) {
+                const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!validImageTypes.includes(image.type)) {
+                    document.getElementById("imageError").innerHTML = "Please upload a valid image file (jpg, png, gif).";
+                    isValid = false;
+                }
+            } else {
+                document.getElementById("imageError").innerHTML = "Image is required.";
+                isValid = false;
+            }
+
+            // Validate Recipe Video (optional)
+            const video = document.getElementById("recipeVideo").files[0];
+            if (video && !['video/mp4', 'video/webm'].includes(video.type)) {
+                document.getElementById("videoError").innerHTML = "Please upload a valid video file (mp4, webm).";
+                isValid = false;
+            }
+
+            // If everything is valid, submit the form
+            if (isValid) {
+                alert("Recipe submitted successfully!");
+                // You can submit the form here
+                // event.target.submit();
+            }
+        });
+    </script>
+</body>
+</html>

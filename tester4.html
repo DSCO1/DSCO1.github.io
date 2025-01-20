@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Delight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style3.css">
+    <style>
+        
+        .search-results {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); 
+            background-image: url('background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+            color: #fff; 
+        }
+        .search-results .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search-results h2 {
+            margin-bottom: 20px;
+            color: #333; 
+        }
+        .search-results .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .search-results .recipe-card {
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .search-results .recipe-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .search-results .recipe-card h3 {
+            padding: 15px 15px 0;
+            font-size: 20px;
+            color: #333;
+        }
+        .search-results .recipe-card p {
+            padding: 0 15px 15px;
+            font-size: 14px;
+            color: #777;
+        }
+        .search-results .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .close-search {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .go-back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .go-back-button:hover {
+            background-color: #e64a19;
+            transform: translateY(-3px);
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-utensils"></i>
+                    Culinary Horizons
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="tester4.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#categories">Categories ▼</a>
+                        <div class="dropdown-content">
+                            <a href="Vegeterian.html">Vegetarian</a>
+                            <a href="desserts.html">Desserts</a>
+                            <a href="quick-meals.html">Quick Meals</a>
+                            <a href="snacks.html">Snacks</a>
+                        </div>
+                    </li>
+                   
+                    <li><a href="share.html">Share Your Recipe</a></li>
+                    <li><a href="#contact">About</a></li>
+                </ul>
+
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search recipes, ingredients...">
+                    <i class="fas fa-search search-icon" id="searchIcon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" style="background: url('banner.jpg') no-repeat center/cover;">
+        <div class="container">
+            <h1>Discover Delicious Recipes</h1>
+            <p>Explore a variety of recipes tailored to your taste. Find your next favorite dish today!</p>
+            <a href="#categories" class="btn-primary">Explore Recipes</a>
+        </div>
+    </section>
+
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2>Recipe Categories</h2>
+            <div class="category-grid">
+                <a href="Vegeterian.html" class="category-card">
+                    <img src="vegeterian.jpg" alt="Vegetarian">
+                    <button><h4>Vegetarian</h4></button>
+                </a>
+                <a href="desserts.html" class="category-card">
+                    <img src="dessert.jpg" alt="Desserts">
+                    <button><h4>Desserts</h4></button>
+                </a>
+                <a href="quick-meals.html" class="category-card">
+                    <img src="quick.webp" alt="Quick Meals">
+                    <button><h4>Quick Meals</h4></button>
+                </a>
+                <a href="snacks.html" class="category-card">
+                    <img src="snackss.jpg" alt="Snacks">
+                    <button><h4>Snacks</h4></button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-recipes">
+        <div class="container">
+            <h2>Trending Recipes</h2>
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <a href="paneertikka.html">
+                    <img src="spicypannertikka.webp" alt="Spicy Paneer Tikka"></a>
+                    <h3>Spicy Paneer Tikka</h3>
+                    <p>A flavorful Indian appetizer that's quick and easy to prepare.</p>
+                </div>
+                <div class="recipe-card">
+                    <a href="chocolatelavacake.html">
+                    <img src="chocolatelava.webp" alt="Chocolate Lava Cake"></a>
+                    <h3>Chocolate Lava Cake</h3>
+                    <p>Delightful molten chocolate cake for dessert lovers.</p>
+                </div>
+                <div class="recipe-card">
+                    <a href="veggiestirfry.html">
+                    <img src="veggiestirfry.jpg" alt="Veggie Stir-Fry"></a>
+                    <h3>Veggie Stir-Fry</h3>
+                    <p>Healthy and colorful vegetable stir-fry in under 30 minutes.</p>
+                </div>
+                <div class="recipe-card">
+                    <a href="creamyalfredopasta.html">
+                    <img src="creamyalfredo.jpg" alt="Creamy Alfredo Pasta"></a>
+                    <h3>Creamy Alfredo Pasta</h3>
+                    <p>A rich and creamy pasta recipe topped with parmesan cheese.</p>
+                </div>
+                <div class="recipe-card">
+                    <a href="margretapizza.html">
+                    <img src="margretapizza.webp" alt="Margherita Pizza"></a>
+                    <h3>Margherita Pizza</h3>
+                    <p>A classic pizza with fresh basil, mozzarella, and tomato sauce.</p>
+                </div>
+                <div class="recipe-card">
+                    <a href="caesarsalad.html">
+                    <img src="caesar salad.jpg" alt="Caesar Salad"></a>
+                    <h3>Caesar Salad</h3>
+                    <p>A healthy and refreshing salad with a tangy Caesar dressing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Contact Us</h3>
+                <p>Email: info@recipedelight.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img src="instagram.jpeg" alt="Instagram"></a>
+                <a href="https://x.com/?lang=en"><img src="twitter.svg" alt="Twitter"></a>
+            </div>
+        </div>
+    </footer>
+    <section class="search-results" id="searchResults">
+        <div class="container">
+            <h2>Search Results</h2>
+            <div class="recipe-grid" id="searchRecipeGrid">
+            </div>
+        </div>
+        <a href="#" class="go-back-button">Go Back to Home</a>
+        <i class="fas fa-times close-search" id="closeSearch"></i>
+    </section>
+
+    <script>
+        const recipeDatabase = {
+            vegetarian: [
+                {
+                    category: "Vegetarian",
+                    recipes: [
+                        {
+                            id: "rajma",
+                            title: "Rajma",
+                            description: "Classic North Indian kidney bean curry",
+                            ingredients: ["kidney beans", "onions", "tomatoes", "ginger", "garlic", "spices"],
+                            complexity: "Medium",
+                            preparationTime: "60 mins",
+                            serves: 4,
+                            tags: ["indian", "vegetarian", "curry", "main course"]
+                        },
+                        {
+                            id: "sambhar",
+                            title: "Sambhar",
+                            description: "South Indian lentil-based vegetable stew",
+                            ingredients: ["toor dal", "mixed vegetables", "tamarind", "sambar powder", "mustard seeds"],
+                            complexity: "Medium",
+                            preparationTime: "45 mins",
+                            serves: 4,
+                            tags: ["south indian", "vegetarian", "lentils", "stew"]
+                        },
+                        {
+                            id: "veg",
+                            title: "Mix Veg Curry",
+                            description: "Colorful curry with assorted seasonal vegetables",
+                            ingredients: ["mixed vegetables", "onions", "tomatoes", "ginger", "garlic", "spices"],
+                            complexity: "Easy",
+                            preparationTime: "40 mins",
+                            serves: 4,
+                            tags: ["indian", "vegetarian", "curry", "healthy"]
+                        },
+                        {
+                            id: "palak",
+                            title: "Palak Paneer",
+                            description: "Creamy spinach curry with soft paneer cubes",
+                            ingredients: ["paneer", "spinach", "cream", "onions", "garlic"],
+                            complexity: "Medium",
+                            preparationTime: "50 mins",
+                            serves: 4,
+                            tags: ["indian", "vegetarian", "healthy", "main course"]
+                        },
+                        {
+                            id: "masala",
+                            title: "Mushroom Masala",
+                            description: "Spicy mushroom curry with rich gravy",
+                            ingredients: ["mushrooms", "onions", "tomatoes", "cream", "spices"],
+                            complexity: "Medium",
+                            preparationTime: "35 mins",
+                            serves: 4,
+                            tags: ["indian", "vegetarian", "spicy", "curry"]
+                        },
+                        {
+                            id: "kadi",
+                            title: "Kadi Pakora",
+                            description: "Yogurt-based curry with gram flour fritters",
+                            ingredients: ["yogurt", "besan", "pakoras", "spices", "curry leaves"],
+                            complexity: "Medium",
+                            preparationTime: "50 mins",
+                            serves: 4,
+                            tags: ["indian", "vegetarian", "comfort food", "curry"]
+                        },
+                        {
+                            id: "dalmakhni",
+                            title: "Dal Makhni",
+                            description: "Creamy black lentil dish from Punjab",
+                            ingredients: ["black lentils", "rajma", "cream", "butter", "spices"],
+                            complexity: "Medium",
+                            preparationTime: "90 mins",
+                            serves: 4,
+                            tags: ["punjabi", "vegetarian", "rich", "main course"]
+                        },
+                        {
+                            id: "aalu",
+                            title: "Aloo Paratha",
+                            description: "Stuffed potato flatbread",
+                            ingredients: ["wheat flour", "potatoes", "spices", "butter"],
+                            complexity: "Medium",
+                            preparationTime: "45 mins",
+                            serves: 4,
+                            tags: ["indian", "vegetarian", "breakfast", "stuffed bread"]
+                        }
+                    ]
+                }
+            ],
+            desserts: [
+                {
+                    category: "Desserts",
+                    recipes: [
+                        {
+                            id: "gajar",
+                            title: "Gajar Halwa",
+                            description: "Traditional carrot pudding dessert",
+                            ingredients: ["carrots", "milk", "sugar", "ghee", "nuts"],
+                            complexity: "Medium",
+                            preparationTime: "45 mins",
+                            serves: 4,
+                            tags: ["indian", "dessert", "sweet", "winter special"]
+                        },
+                        {
+                            id: "gulab",
+                            title: "Gulab Jamun",
+                            description: "Deep-fried milk solids soaked in sugar syrup",
+                            ingredients: ["milk powder", "flour", "sugar", "cardamom", "rose water"],
+                            complexity: "Medium",
+                            preparationTime: "40 mins",
+                            serves: 6,
+                            tags: ["indian", "dessert", "sweet", "fried"]
+                        },
+                        {
+                            id: "Kheer",
+                            title: "Kheer",
+                            description: "Creamy rice pudding with nuts and saffron",
+                            ingredients: ["rice", "milk", "sugar", "cardamom", "nuts"],
+                            complexity: "Easy",
+                            preparationTime: "30 mins",
+                            serves: 6,
+                            tags: ["indian", "dessert", "sweet", "pudding"]
+                        },
+                        {
+                            id: "ladoo",
+                            title: "Ladoo",
+                            description: "Traditional Indian sweet ball",
+                            ingredients: ["besan", "sugar", "ghee", "nuts"],
+                            complexity: "Medium",
+                            preparationTime: "35 mins",
+                            serves: 6,
+                            tags: ["indian", "dessert", "sweet", "festive"]
+                        },
+                        {
+                            id: "kulfi",
+                            title: "Kulfi",
+                            description: "Traditional Indian frozen dessert",
+                            ingredients: ["milk", "sugar", "cardamom", "nuts"],
+                            complexity: "Easy",
+                            preparationTime: "20 mins",
+                            serves: 4,
+                            tags: ["indian", "dessert", "frozen", "sweet"]
+                        },
+                        {
+                            id: "barfi",
+                            title: "Barfi",
+                            description: "Sweet milk-based confection",
+                            ingredients: ["milk powder", "sugar", "ghee", "nuts"],
+                            complexity: "Medium",
+                            preparationTime: "30 mins",
+                            serves: 6,
+                            tags: ["indian", "dessert", "sweet", "festive"]
+                        },
+                        {
+                            id: "Jalebi",
+                            title: "Jalebi",
+                            description: "Crispy, spiral-shaped sweet",
+                            ingredients: ["flour", "sugar", "saffron", "water"],
+                            complexity: "Medium",
+                            preparationTime: "45 mins",
+                            serves: 4,
+                            tags: ["indian", "dessert", "fried", "sweet"]
+                        },
+                        {
+                            id: "rasgulla",
+                            title: "Rasgulla",
+                            description: "Soft, spongy cheese balls in sugar syrup",
+                            ingredients: ["milk", "sugar", "lemon juice", "water"],
+                            complexity: "Medium",
+                            preparationTime: "60 mins",
+                            serves: 6,
+                            tags: ["indian", "dessert", "sweet", "bengali"]
+                        }
+                    ]
+                }
+            ],
+            quickMeals: [
+                {
+                    category: "Quick Meals",
+                    recipes: [
+                        {
+                            id: "BesanCheela",
+                            title: "Besan Chilla",
+                            description: "Savory gram flour pancakes",
+                            ingredients: ["besan", "onions", "tomatoes", "green chili", "spices"],
+                            complexity: "Easy",
+                            preparationTime: "20 mins",
+                            serves: 2,
+                            tags: ["indian", "quick", "breakfast", "vegetarian"]
+                        },
+                        {
+                            id: "poha",
+                            title: "Poha",
+                            description: "Flattened rice breakfast dish",
+                            ingredients: ["poha", "onions", "peanuts", "curry leaves", "turmeric"],
+                            complexity: "Easy",
+                            preparationTime: "15 mins",
+                            serves: 2,
+                            tags: ["indian", "quick", "breakfast", "vegetarian"]
+                        },
+                        {
+                            id: "upma",
+                            title: "Upma",
+                            description: "South Indian semolina breakfast porridge",
+                            ingredients: ["semolina", "vegetables", "mustard seeds", "curry leaves"],
+                            complexity: "Easy",
+                            preparationTime: "20 mins",
+                            serves: 2,
+                            tags: ["indian", "quick", "breakfast", "vegetarian"]
+                        },
+                        {
+                            id: "kathiroll",
+                            title: "Kathi Roll",
+                            description: "Stuffed Indian street food wrap",
+                            ingredients: ["paratha", "mixed vegetables", "spices", "paneer"],
+                            complexity: "Medium",
+                            preparationTime: "25 mins",
+                            serves: 2,
+                            tags: ["indian", "quick", "street food", "wrap"]
+                        },
+                        {
+                            id: "vegpulao",
+                            title: "Vegpulao",
+                            description: "One-pot vegetable rice dish",
+                            ingredients: ["basmati rice", "mixed vegetables", "spices", "ghee"],
+                            complexity: "Easy",
+                            preparationTime: "30 mins",
+                            serves: 2,
+                            tags: ["indian", "quick", "rice", "one-pot"]
+                        },
+                        {
+                            id: "masalaoats",
+                            title: "Masala Oats",
+                            description: "Spicy and nutritious oatmeal",
+                            ingredients: ["oats", "vegetables", "spices", "butter"],
+                            complexity: "Easy",
+                            preparationTime: "15 mins",
+                            serves: 2,
+                            tags: ["healthy", "quick", "breakfast", "vegetarian"]
+                        },
+                        {
+                            id: "bhelpuri",
+                            title: "Bhel Puri",
+                            description: "Crispy puffed rice street snack",
+                            ingredients: ["puffed rice", "sev", "onions", "tomatoes", "chutneys"],
+                            complexity: "Easy",
+                            preparationTime: "15 mins",
+                            serves: 2,
+                            tags: ["indian", "quick", "street food", "snack"]
+                        },
+                        {
+                            id: "misalpav",
+                            title: "Misal Pav",
+                            description: "Spicy sprouts curry with bread",
+                            ingredients: ["sprouts", "onions", "tomatoes", "pav bread", "spices"],
+                            complexity: "Medium",
+                            preparationTime: "25 mins",
+                            serves: 2,
+                            tags: ["maharashtrian", "quick", "street food", "spicy"]
+                        }
+                    ]
+                }
+            ],
+            snacks: [
+                {
+                    category: "Snacks",
+                    recipes: [
+                        {
+                            id: "dhokla",
+                            title: "Dhokla",
+                            description: "Steamed fermented chickpea flour cake",
+                            ingredients: ["besan", "yogurt", "eno fruit salt", "green chili"],
+                            complexity: "Medium",
+                            preparationTime: "30 mins",
+                            serves: 4,
+                            tags: ["gujarati", "steamed", "vegetarian", "snack"]
+                        },
+                        {
+                            id: "noodles",
+                            title: "Veg Hakka Noodles",
+                            description: "Indo-Chinese style vegetable noodles",
+                            ingredients: ["noodles", "mixed vegetables", "soy sauce", "vinegar"],
+                            complexity: "Easy",
+                            preparationTime: "20 mins",
+                            serves: 2,
+                            tags: ["indo-chinese", "noodles", "quick", "vegetarian"]
+                        },
+                        {
+                            id: "momos",
+                            title: "Veg Momos",
+                            description: "Steamed vegetable dumplings",
+                            ingredients: ["maida", "mixed vegetables", "ginger", "garlic"],
+                            complexity: "Medium",
+                            preparationTime: "45 mins",
+                            serves: 4,
+                            tags: ["tibetan", "steamed", "dumplings", "vegetarian"]
+                        },
+                        {
+                            id: "Khandvi",
+                            title: "Khandvi",
+                            description: "Soft, rolled gram flour snack",
+                            ingredients: ["besan", "yogurt", "ginger", "green chili"],
+                            complexity: "Medium",
+                            preparationTime: "30 mins",
+                            serves: 4,
+                            tags: ["gujarati", "rolled", "vegetarian", "snack"]
+                        },
+                        {
+                            id: "thalipeeth",
+                            title: "Thalipeeth",
+                            description: "Multigrain savory pancake",
+                            ingredients: ["multi-grain flour", "onions", "coriander", "spices"],
+                            complexity: "Medium",
+                            preparationTime: "25 mins",
+                            serves: 2,
+                            tags: ["maharashtrian", "pancake", "vegetarian", "healthy"]
+                        },
+                        {
+                            id: "pakora",
+                            title: "Palak Pakora",
+                            description: "Crispy spinach fritters",
+                            ingredients: ["spinach", "besan", "rice flour", "spices"],
+                            complexity: "Easy",
+                            preparationTime: "20 mins",
+                            serves: 4,
+                            tags: ["indian", "fried", "vegetarian", "snack"]
+                        },
+                        {
+                            id: "ragda",
+                            title: "Ragda Pattice",
+                            description: "Potato patties with white pea curry",
+                            ingredients: ["potatoes", "white peas", "onions", "chutneys"],
+                            complexity: "Medium",
+                            preparationTime: "40 mins",
+                            serves: 2,
+                            tags: ["maharashtrian", "street food", "vegetarian", "chaat"]
+                        },
+                        {
+                            id: "samosa",
+                            title: "Samosa",
+                            description: "Crispy pastry filled with spiced potatoes",
+                            ingredients: ["maida", "potatoes", "peas", "spices"],
+                            complexity: "Medium",
+                            preparationTime: "45 mins",
+                            serves: 4,
+                            tags: ["indian", "fried", "street food", "vegetarian"]
+                        }
+                    ]
+                }
+            ]
+        };
+        function imageExists(url, callback) {
+            var img = new Image();
+            img.onload = function() {
+                callback(true);
+            };
+            img.onerror = function() {
+                callback(false);
+            };
+            img.src = url;
+        }
+        function setImageSource(recipe, callback) {
+            const extensions = ['.jpg', '.jpeg', '.png'];
+            let found = false;
+
+            for (let i = 0; i < extensions.length && !found; i++) {
+                let url = `${recipe.id}${extensions[i]}`;
+                imageExists(url, function(exists) {
+                    if (exists) {
+                        callback(url);
+                        found = true;
+                    }
+                });
+            }
+
+            if (!found) {
+                callback('default-image.jpg'); 
+            }
+        }
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const searchResults = document.getElementById('searchResults');
+            const searchRecipeGrid = document.getElementById('searchRecipeGrid');
+            searchRecipeGrid.innerHTML = '';
+            let resultsFound = false;
+            Object.values(recipeDatabase).forEach(categories => {
+                categories.forEach(category => {
+                    category.recipes.forEach(recipe => {
+                        const matchCriteria = [
+                            recipe.title.toLowerCase(),
+                            recipe.description.toLowerCase(),
+                            recipe.tags.join(' ').toLowerCase(),
+                            recipe.ingredients.join(' ').toLowerCase(),
+                            category.category.toLowerCase()
+                        ];
+                        const isMatch = matchCriteria.some(criteria =>
+                            criteria.includes(searchTerm)
+                        );
+
+                        if (isMatch) {
+                            resultsFound = true;
+                            const recipeCard = document.createElement('div');
+                            recipeCard.className = 'recipe-card';
+                            setImageSource(recipe, function(imageUrl) {
+                                recipeCard.innerHTML = `
+                                    <a href="${recipe.id}.html">
+                                        <img src="${imageUrl}" alt="${recipe.title}">
+                                    </a>
+                                    <h3>${recipe.title}</h3>
+                                    <p>${recipe.description}</p>
+                                    <div class="recipe-meta">
+                                        <span>Complexity: ${recipe.complexity}</span>
+                                        <span>Time: ${recipe.preparationTime}</span>
+                                        <span>Serves: ${recipe.serves}</span>
+                                    </div>
+                                `;
+                                searchRecipeGrid.appendChild(recipeCard);
+                            });
+                        }
+                    });
+                });
+            });
+
+            if (!resultsFound) {
+                const noResultsDiv = document.createElement('div');
+                noResultsDiv.textContent = 'No recipes found. Try different keywords!';
+                noResultsDiv.style.textAlign = 'center';
+                noResultsDiv.style.width = '100%';
+                noResultsDiv.style.padding = '20px';
+                noResultsDiv.style.color = '#ff5722';
+                searchRecipeGrid.appendChild(noResultsDiv);
+            }
+            searchResults.style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const searchIcon = document.getElementById('searchIcon');
+            const closeSearch = document.getElementById('closeSearch');
+            searchInput.addEventListener('input', performSearch);
+            searchIcon.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    performSearch();
+                    event.preventDefault();
+                }
+            });
+
+            closeSearch.addEventListener('click', () => {
+                const searchResults = document.getElementById('searchResults');
+                searchResults.style.display = 'none';
+                searchInput.value = '';
+                document.getElementById('searchRecipeGrid').innerHTML = '';
+            });
+            document.querySelector('.go-back-button').addEventListener('click', () => {
+                const searchResults = document.getElementById('searchResults');
+                searchResults.style.display = 'none';
+                searchInput.value = '';
+                document.getElementById('searchRecipeGrid').innerHTML = '';
+            });
+        });
+        function shareRecipe() {
+            alert('Share Your Recipe functionality is coming soon!');
+        }
+    </script>
+</body>
+</html>
